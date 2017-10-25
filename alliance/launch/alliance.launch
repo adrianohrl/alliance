@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="robot_id" />
+  <arg name="robot_params" />
+  <arg name="tasks_params" />
+  <arg name="layers_params" />
+  <group ns="$(arg robot_id)">
+    <group ns="alliance">
+      <node name="high_level" pkg="alliance" type="high_level" output="screen">
+        <param name="id" type="string" value="$(arg robot_id)" />
+        <rosparam file="$(arg robot_params)" command="load" />
+        <rosparam file="$(arg tasks_params)" command="load" />
+      </node>
+      <node name="low_level" pkg="alliance" type="low_level" output="screen">
+        <param name="id" type="string" value="$(arg robot_id)" />
+        <rosparam file="$(arg robot_params)" command="load" />
+        <rosparam file="$(arg tasks_params)" command="load" />
+        <rosparam file="$(arg layers_params)" command="load" />
+      </node>
+    </group>
+  </group>
+</launch>

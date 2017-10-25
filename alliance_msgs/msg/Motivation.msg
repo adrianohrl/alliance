@@ -1,0 +1,10 @@
+Header header
+string task_id
+float64 impatience
+bool acquiescent
+bool suppressed
+bool resetted
+bool aplicable
+float64 motivation
+float64 threshold
+bool active

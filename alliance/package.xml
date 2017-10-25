@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<package>
+  <name>alliance</name>
+  <version>1.0.0</version>
+  <description>This package implements the ALLIANCE multi-robot task allocation archtecture.</description>
+
+  <maintainer email="adrianohrl@unifei.edu.br">Adriano Henrique Rossette Leite</maintainer>
+  <license>Apache 2.0</license>
+  <url type="website">https://github.com/adrianohrl/ruler/wiki</url>
+  <author email="adrianohrl@unifei.edu.br">Adriano Henrique Rossette Leite</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>alliance_msgs</build_depend>
+  <build_depend>pluginlib</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>ruler</build_depend>
+  <build_depend>ruler_msgs</build_depend>
+
+  <run_depend>alliance_msgs</run_depend>
+  <run_depend>pluginlib</run_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>ruler</run_depend>
+  <run_depend>ruler_msgs</run_depend>
+</package>
+

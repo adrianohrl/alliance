@@ -1,0 +1,23 @@
+tasks:
+  size: 3
+  task0:
+    id: 'wander'
+    name: 'Wander'
+    layers:
+      size: 1
+      layer0:
+        plugin_name: 'alliance_test/wander'
+  task1:
+    id: 'border_protection'
+    name: 'Border Protection'
+    layers:
+      size: 1
+      layer0:
+        plugin_name: 'alliance_test/border_protection'
+  task2:
+    id: 'report'
+    name: 'Report'
+    layers:
+      size: 1
+      layer0:
+        plugin_name: 'alliance_test/report'
