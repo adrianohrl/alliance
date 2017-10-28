@@ -1,1 +1,1 @@
-../../../bin/run_mobilesim.bash
+../../bin/run_mobilesim.bash

@@ -1,4 +1,5 @@
 #include "nodes/high_level_node.h"
+#include "utilities/motivation_plot_generator.h"
 
 namespace nodes
 {
@@ -6,7 +7,7 @@ HighLevelNode::HighLevelNode(const ros::NodeHandlePtr& nh,
                              const ros::Rate& rate)
     : AllianceNode<alliance::Robot, HighLevelNode>::AllianceNode(nh, rate),
       AllianceSubject<alliance_msgs::SensoryFeedback>::AllianceSubject(
-          ros::this_node::getName()),
+          ros::this_node::getName()), motivation_pubs_(new MotivationPublishers(nh)),
       broadcasting_(false)
 {
 }
@@ -15,7 +16,7 @@ HighLevelNode::~HighLevelNode()
 {
   broadcast_timer_.stop();
   inter_robot_communication_pub_.shutdown();
-  motivation_pub_.shutdown();
+  motivation_pubs_->shutdown();
   sensory_feedback_sub_.shutdown();
 }
 
@@ -162,12 +163,15 @@ void HighLevelNode::readParameters()
     }
     behaviour_set->setImpatience(fast_rate);
     robot_->addBehaviourSet(behaviour_set);
+    motivation_pubs_->addMotivationBehaviour(robot_, behaviour_set);
+    utilities::MotivationPlotConfigGenerator::generate(*robot_, *behaviour_set->getTask());
   }
   if (robot_->empty())
   {
     ROSNode::shutdown("None behaviour set was imported to " + robot_->str() +
                       " robot.");
   }
+  utilities::MotivationPlotConfigGenerator::generate(*robot_);
 }
 
 void HighLevelNode::init()
@@ -193,8 +197,6 @@ void HighLevelNode::init()
   inter_robot_communication_pub_ =
       nh_->advertise<alliance_msgs::InterRobotCommunication>(
           "/alliance/inter_robot_communication", robot_->size());
-  motivation_pub_ =
-      nh_->advertise<alliance_msgs::Motivation>("/alliance/motivation", 1);
   sensory_feedback_sub_ =
       nh_->subscribe(robot_->getNamespace() + "/alliance/sensory_feedback", 10,
                      &HighLevelNode::sensoryFeedbackCallback, this);
@@ -210,11 +212,7 @@ void HighLevelNode::controlLoop()
     ROS_INFO_STREAM("Started " << *robot_ << " broadcast timer for "
                                 << *robot_->getExecutingTask() << ".");
   }
-  for (alliance::Robot::iterator it(robot_->begin()); it != robot_->end(); it++)
-  {
-    alliance::BehaviourSetPtr behaviour_set(*it);
-    motivation_pub_.publish(behaviour_set->getMotivationalBehaviour()->toMsg());
-  }
+  motivation_pubs_->publish();
 }
 
 void HighLevelNode::broadcastTimerCallback(const ros::TimerEvent& event)

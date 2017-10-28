@@ -55,12 +55,14 @@ set(H_FILES
   include/alliance/sensory_feedback.h
   include/alliance/task.h
   include/nodes/alliance_event.h
+  include/nodes/alliance_node.h
+  include/nodes/alliance_observer.h
+  include/nodes/alliance_subject.h
   include/nodes/high_level_node.h
   include/nodes/low_level_node.h
-  include/nodes/alliance_observer.h
-  include/nodes/alliance_node.h
-  include/nodes/alliance_subject.h
+  include/nodes/motivation_publishers.h
   include/nodes/ros_sensor_message.h
+  include/utilities/motivation_plot_generator.h
 )
 
 set(CPP_FILES
@@ -81,6 +83,8 @@ set(CPP_FILES
   src/alliance/task.cpp
   src/nodes/high_level_node.cpp
   src/nodes/low_level_node.cpp
+  src/nodes/motivation_publishers.cpp
+  src/utilities/motivation_plot_generator.cpp
 )
 
 add_library(${PROJECT_NAME}

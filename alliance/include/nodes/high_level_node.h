@@ -3,6 +3,7 @@
 
 #include "alliance/robot.h"
 #include "nodes/alliance_node.h"
+#include "nodes/motivation_publishers.h"
 
 namespace nodes
 {
@@ -18,7 +19,7 @@ public:
 private:
   bool broadcasting_;
   ros::Publisher inter_robot_communication_pub_;
-  ros::Publisher motivation_pub_;
+  MotivationPublishersPtr motivation_pubs_;
   ros::Subscriber sensory_feedback_sub_;
   ros::Timer broadcast_timer_;
   virtual void readParameters();

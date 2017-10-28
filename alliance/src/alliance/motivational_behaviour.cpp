@@ -55,9 +55,9 @@ double MotivationalBehaviour::getLevel(const ros::Time& timestamp)
   msg_.acquiescent = acquiescence_->isAcquiescent(timestamp);
   msg_.suppressed = activity_suppression_->isSuppressed(timestamp);
   msg_.resetted = impatience_reset_->isResetted(timestamp);
-  msg_.aplicable = sensory_feedback_->isApplicable(timestamp);
+  msg_.applicable = sensory_feedback_->isApplicable(timestamp);
   msg_.motivation = (msg_.motivation + msg_.impatience) * !msg_.acquiescent *
-                    !msg_.suppressed * !msg_.resetted * msg_.aplicable;
+                    !msg_.suppressed * !msg_.resetted * msg_.applicable;
   motivation_->update(msg_.motivation, timestamp);
   return msg_.motivation;
 }

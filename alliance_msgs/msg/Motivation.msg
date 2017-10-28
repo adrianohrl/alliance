@@ -4,7 +4,7 @@ float64 impatience
 bool acquiescent
 bool suppressed
 bool resetted
-bool aplicable
+bool applicable
 float64 motivation
 float64 threshold
 bool active

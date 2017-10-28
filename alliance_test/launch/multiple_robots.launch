@@ -10,12 +10,11 @@
   <include file="$(find alliance_test)/launch/single_robot.launch">
     <arg name="robot_id" value="robot3" />
   </include>
- <include file="$(find alliance_test)/launch/single_robot.launch">
+  <include file="$(find alliance_test)/launch/single_robot.launch">
     <arg name="robot_id" value="robot4" />
   </include>
   <include file="$(find alliance_test)/launch/single_robot.launch">
     <arg name="robot_id" value="robot5" />
   </include>
-  <node name="motivation_bag" pkg="rosbag" type="record"
-        args="-O $(find alliance_test)/bag/motivation.bag /alliance/motivation" />
+  <include file="$(find alliance_test)/launch/rosbag_record.launch" />
 </launch>
