@@ -6,7 +6,7 @@
 
   <maintainer email="adrianohrl@unifei.edu.br">Adriano Henrique Rossette Leite</maintainer>
   <license>Apache 2.0</license>
-  <url type="website">https://github.com/adrianohrl/ruler/wiki</url>
+  <url type="website">https://github.com/adrianohrl/alliance/wiki</url>
   <author email="adrianohrl@unifei.edu.br">Adriano Henrique Rossette Leite</author>
 
   <buildtool_depend>catkin</buildtool_depend>
@@ -22,5 +22,10 @@
   <run_depend>roscpp</run_depend>
   <run_depend>ruler</run_depend>
   <run_depend>ruler_msgs</run_depend>
+  <run_depend>rqt_mrta</run_depend>
+
+  <export>
+    <rqt_mrta config="${prefix}/mrta.xml" />
+  </export>
 </package>
 

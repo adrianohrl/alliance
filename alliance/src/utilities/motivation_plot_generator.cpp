@@ -1,11 +1,12 @@
 #include <fstream>
 #include <regex>
+#include <ros/package.h>
 #include "utilities/motivation_plot_generator.h"
 
 namespace utilities
 {
-const std::string MotivationPlotConfigGenerator::ALLIANCE_PATH =
-    MotivationPlotConfigGenerator::getAlliancePath();
+const std::string MotivationPlotConfigGenerator::TEMPORARY_PATH =
+    "/tmp/alliance";
 const std::string MotivationPlotConfigGenerator::MULTI_PLOT_TEMPLATE =
     MotivationPlotConfigGenerator::getTemplate("multiplot_template");
 const std::string MotivationPlotConfigGenerator::SINGLE_PLOT_TEMPLATE =
@@ -34,7 +35,7 @@ void MotivationPlotConfigGenerator::generate(const alliance::Robot& robot)
     ss << "  </row_" << i << ">\n";
     i++;
   }
-  std::ofstream generated_file(getFilename("/tmp/alliance", robot));
+  std::ofstream generated_file(getFilename(robot.getId()));
   generated_file << std::regex_replace(MULTI_PLOT_TEMPLATE,
                                        std::regex("@plots@"), ss.str());
   generated_file.close();
@@ -46,71 +47,53 @@ void MotivationPlotConfigGenerator::generate(const alliance::Robot& robot,
   std::string config(DETAILED_MULTI_PLOT_TEMPLATE);
   config = std::regex_replace(config, std::regex("@robot_id@"), robot.getId());
   config = std::regex_replace(config, std::regex("@task_id@"), task.getId());
-  std::ofstream generated_file(getFilename("/tmp/alliance", robot, task));
+  std::ofstream generated_file(getFilename(robot.getId(), task.getId()));
   generated_file << config;
   generated_file.close();
-}
-
-void MotivationPlotConfigGenerator::clear()
-{
-  system("rm -rf /tmp/alliance");
-}
-
-std::string MotivationPlotConfigGenerator::getAlliancePath()
-{
-  system("mkdir -p /tmp/alliance && rospack find alliance > /tmp/alliance/path.txt");
-  std::ifstream file("/tmp/alliance/path.txt");
-  std::string path;
-  std::getline(file, path);
-  file.close();
-  if (path.empty())
-  {
-    throw utilities::Exception("The alliance ROS package was not found.");
-  }
-  return path;
 }
 
 std::string
 MotivationPlotConfigGenerator::getTemplate(const std::string& filename)
 {
   std::ifstream file;
-  file.open(ALLIANCE_PATH + "/template/" + filename + ".xml.in");
+  file.open(ros::package::getPath("alliance") + "/template/" + filename +
+            ".xml.in");
   std::string content;
   std::getline(file, content, '\0');
   file.close();
   if (content.empty())
   {
-    throw utilities::Exception("The " + ALLIANCE_PATH + "/template/" +
-                               filename + ".xml.in" +
+    throw utilities::Exception("The " + ros::package::getPath("alliance") +
+                               "/template/" + filename + ".xml.in" +
                                " does not exist or is empty.");
   }
   return content;
 }
 
 std::string
-MotivationPlotConfigGenerator::getFilename(const std::string& root,
-                                           const alliance::Robot& robot)
+MotivationPlotConfigGenerator::getFilename(const std::string& robot_id,
+                                           const char *root)
 {
-  std::string filename(robot.getId());
+  std::string filename(robot_id);
   if (filename.size() > 1 && filename.at(0) == '/')
   {
     filename = filename.substr(1);
   }
   filename = std::regex_replace(filename, std::regex("/"), "-");
-  return root + "/" + filename + "-motivations.xml";
+  return std::string(root) + "/" + filename + "-motivations.xml";
 }
 
 std::string
-MotivationPlotConfigGenerator::getFilename(const std::string& root,
-                                           const alliance::Robot& robot,
-                                           const alliance::Task& task)
+MotivationPlotConfigGenerator::getFilename(const std::string& robot_id,
+                                           const std::string& task_id,
+                                           const char* root)
 {
-  std::string filename(robot.getId() + "/" + task.getId());
+  std::string filename(robot_id + "/" + task_id);
   if (filename.size() > 1 && filename.at(0) == '/')
   {
     filename = filename.substr(1);
   }
   filename = std::regex_replace(filename, std::regex("/"), "-");
-  return root + "/" + filename + "-detailed-motivation.xml";
+  return std::string(root) + "/" + filename + "-detailed-motivation.xml";
 }
 }

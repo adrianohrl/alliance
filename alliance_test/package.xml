@@ -22,7 +22,7 @@
   <run_depend>ruler_msgs</run_depend>
 
   <export>
-    <alliance plugin="${prefix}/alliance_plugins.xml"/>
+    <alliance plugin="${prefix}/alliance_plugins.xml" />
   </export>
 </package>
 
