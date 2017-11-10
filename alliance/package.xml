@@ -2,7 +2,7 @@
 <package>
   <name>alliance</name>
   <version>1.0.0</version>
-  <description>This package implements the ALLIANCE multi-robot task allocation archtecture.</description>
+  <description>This package implements the ALLIANCE multi-robot task allocation architecture.</description>
 
   <maintainer email="adrianohrl@unifei.edu.br">Adriano Henrique Rossette Leite</maintainer>
   <license>Apache 2.0</license>
@@ -25,7 +25,7 @@
   <run_depend>rqt_mrta</run_depend>
 
   <export>
-    <rqt_mrta config="${prefix}/mrta.xml" />
+    <rqt_mrta architecture="${prefix}/rqt_mrta.xml" />
   </export>
 </package>
 

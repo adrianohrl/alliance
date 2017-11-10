@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rqt_mrta format="architecture">
+  <architecture>
+    <name>ALLIANCE</name>
+    <robots>
+      <type>ST</type>
+      <busy_robots>
+        <topic>
+          <name>/alliance/inter_communication</name>
+          <type>alliance_msgs/InterRobotCommunication</type>
+          <field>header/frame_id</field>
+          <queue_size>10</queue_size>
+          <timeout>2.0</timeout>
+          <horizon>10.0</horizon>
+        </topic>
+      </busy_robots>
+    </robots>
+    <tasks>
+      <type>SR</type>
+    </tasks>
+    <allocations>
+      <type>IA</type>
+      <allocated_tasks>
+        <topic>
+          <name>/alliance/inter_communication</name>
+          <type>alliance_msgs/InterRobotCommunication</type>
+          <field>task_id</field>
+          <queue_size>10</queue_size>
+          <timeout>0.5</timeout>
+          <horizon>10.0</horizon>
+        </topic>
+      </allocated_tasks>
+    </allocations>
+  </architecture>
+  <config>
+    <name>alliance_params</name>
+    <param>
+      <name>name</name>
+      <type>string</type>
+      <default>@robot_id@</default>
+      <tool_tip>Enter the robot name.</tool_tip>
+    </param>
+    <param>
+      <name>spin_rate</name>
+      <type>double</type>
+      <default>2.0</default>
+      <tool_tip>Enter the spin rate of the node (in [Hz]).</tool_tip>
+    </param>
+    <param>
+      <name>broadcast_rate</name>
+      <type>double</type>
+      <tool_tip>Enter the robot broadcast rate (in [Hz]).</tool_tip>
+    </param>
+    <param>
+      <name>timeout_duration</name>
+      <type>double</type>
+      <tool_tip>Enter the robot timeout duration (in [s]).</tool_tip>
+    </param>
+    <param>
+      <name>buffer_horizon</name>
+      <type>double</type>
+      <tool_tip>Enter the robot buffer horizon (in [s]).</tool_tip>
+    </param>
+    <params>
+      <namespace>sensors</namespace>
+      <param>
+        <name>size</name>
+        <type>int</type>
+        <value>@array_size@</value>
+        <tool_tip>Enter the number of sensors that the robot have.</tool_tip>
+      </param>
+      <array>
+        <namespace>sensor@index@</namespace>
+        <param>
+          <name>plugin_name</name>
+          <type>string</type>
+          <tool_tip>Enter the sensor plugin name.</tool_tip>
+        </param>
+        <param>
+          <name>topic_name</name>
+          <type>string</type>
+          <tool_tip>Enter the sensor topic name.</tool_tip>
+        </param>
+        <param>
+          <name>timeout_duration</name>
+          <type>double</type>
+          <default>5.0</default>
+          <tool_tip>Enter the duration in which the sensor is considered unreachable (in [s]).</tool_tip>
+        </param>
+        <param>
+          <name>buffer_horizon</name>
+          <type>double</type>
+          <default>5.0</default>
+          <tool_tip>Enter the sensor buffer horizon length (in [s]).</tool_tip>
+        </param>
+      </array>
+    </params>
+    <params>
+      <namespace>behaviour_sets</namespace>
+      <param>
+        <name>size</name>
+        <type>int</type>
+        <value>@array_size@</value>
+        <tool_tip>Enter the number of behaviour sets that the robot have.</tool_tip>
+      </param>
+      <array>
+        <namespace>behaviour_set@index@</namespace>
+        <param>
+          <name>task_id</name>
+          <value>@task_id@</value>
+          <type>string</type>
+          <tool_tip>Enter the task id in which this behaviour set is related to.</tool_tip>
+        </param>
+        <param>
+          <name>task_expected_duration</name>
+          <type>double</type>
+          <tool_tip>Enter the expected duration that this robot takes to accomplish this task (in [s]).</tool_tip>
+        </param>
+        <params>
+          <namespace>motivational_behaviour</namespace>
+          <params>
+            <name>threshold</name>
+            <type>double</type>
+            <tool_tip>Enter this motivational behaviour threshold for activation.</tool_tip>
+            <params>
+              <namespace>acquiescence</namespace>
+              <param>
+                <name>yielding_delay</name>
+                <type>double</type>
+                <tool_tip>Enter the yielding delay of the acquiescence module (in [s]).</tool_tip>
+              </param>
+              <param>
+                <name>giving_up_delay</name>
+                <type>double</type>
+                <tool_tip>Enter the giving up delay of the acquiescence module (in [s]).</tool_tip>
+              </param>
+            </params>
+            <param>
+              <name>impatience/fast_rate</name>
+              <type>double</type>
+              <tool_tip>Enter the motivation fast rate of the impatience module.</tool_tip>
+            </param>
+            <params>
+              <namespace>sensory_feedback</namespace>
+              <param>
+                <name>plugin_name</name>
+                <type>string</type>
+                <tool_tip>Enter the plugin name of the sensory feedback module.</tool_tip>
+              </param>
+              <params>
+                <namespace>sensors</namespace>
+                <param>
+                  <name>size</name>
+                  <type>int</type>
+                  <value>@array_size@</value>
+                  <tool_tip>Enter the number of sensors used in this sensory feedback module.</tool_tip>
+                </param>
+                <array>
+                  <namespace>sensor@index@</namespace>
+                  <param>
+                    <name>topic_name</name>
+                    <type>string</type>
+                    <tool_tip>Enter the sensor topic name.</tool_tip>
+                  </param>
+                </array>
+              </params>
+            </params>
+          </params>
+        </params>
+      </array>
+    </params>
+  </config>
+  <widgets>
+    <widget>
+      <plugin_name>rqt_alliance/alliance_plugin</plugin_name>
+    </widget>
+  </widgets>
+</rqt_mrta>
