@@ -6,8 +6,6 @@ find_package(catkin REQUIRED)
 
 find_package(alliance REQUIRED COMPONENTS
   alliance_msgs
-  ruler
-  ruler_msgs
 )
 
 catkin_package(
@@ -15,12 +13,9 @@ catkin_package(
   LIBRARIES
     alliance
     ${PROJECT_NAME}
-    ruler
   CATKIN_DEPENDS
     alliance
     alliance_msgs
-    ruler
-    ruler_msgs
 )
 
 include_directories(
