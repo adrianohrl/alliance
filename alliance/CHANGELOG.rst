@@ -2,6 +2,9 @@
 Changelog for package alliance
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 1.0.3 (2017-11-12)
 ------------------
 * removed others
