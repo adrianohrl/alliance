@@ -18,10 +18,10 @@
   <run_depend>alliance_msgs</run_depend>
   <run_depend>pluginlib</run_depend>
   <run_depend>roscpp</run_depend>
-  <run_depend>rqt_mrta</run_depend>
+  <!--<run_depend>rqt_mrta</run_depend>-->
 
   <export>
-    <rqt_mrta architecture="${prefix}/rqt_mrta.xml" />
+    <!--<rqt_mrta architecture="${prefix}/rqt_mrta.xml" />-->
   </export>
 </package>
 
