@@ -2,6 +2,11 @@
 Changelog for package alliance
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.0.3 (2017-11-12)
+------------------
+* removed others
+* Contributors: adrianohrl
+
 1.0.1 (2017-11-12)
 ------------------
 * removed ruler dependency and added rqt_alliance package to this metapackage
