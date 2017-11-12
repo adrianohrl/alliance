@@ -14,8 +14,6 @@ find_package(catkin REQUIRED COMPONENTS
 
 find_package(alliance REQUIRED COMPONENTS
   alliance_msgs
-  ruler
-  ruler_msgs
 )
 
 find_package(rqt_multiplot REQUIRED)
@@ -43,8 +41,6 @@ catkin_package(
     roscpp
     rqt_gui_cpp
     rqt_multiplot
-    ruler
-    ruler_msgs
     std_msgs
 )
 
