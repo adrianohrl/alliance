@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <name>alliance_msgs</name>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <description>This package contains the definition of the message, service and action files of the alliance stack.</description>
 
   <maintainer email="adrianohrl@unifei.edu.br">Adriano Henrique Rossette Leite</maintainer>
