@@ -2,6 +2,9 @@
 Changelog for package rqt_alliance
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 1.0.1 (2017-11-12)
 ------------------
 * removed alliance_test package
