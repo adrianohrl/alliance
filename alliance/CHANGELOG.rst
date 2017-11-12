@@ -2,6 +2,11 @@
 Changelog for package alliance
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.0.5 (2017-11-12)
+------------------
+* removed rqt_mrta run depend
+* Contributors: adrianohrl
+
 1.0.4 (2017-11-12)
 ------------------
 
