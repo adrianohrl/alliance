@@ -1,0 +1,12 @@
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Changelog for package alliance
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Forthcoming
+-----------
+* removed ruler dependency and added rqt_alliance package to this metapackage
+* altered the rqt_mrta.xml file
+* configuring for rqt_mrta
+* created motivation multiplot configuration generator based on a template
+* released version 1.0
+* Contributors: adrianohrl
