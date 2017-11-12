@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <name>alliance</name>
-  <version>1.0.4</version>
+  <version>1.0.5</version>
   <description>This package implements the ALLIANCE multi-robot task allocation architecture.</description>
 
   <maintainer email="adrianohrl@unifei.edu.br">Adriano Henrique Rossette Leite</maintainer>
