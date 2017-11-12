@@ -1,4 +1,0 @@
-<launch>
-  <node name="motivation_bag" pkg="rosbag" type="record"
-        args="-O $(find alliance_test)/bag/motivation.bag /alliance/motivation -e '(.*)/alliance/motivation'" />
-</launch>

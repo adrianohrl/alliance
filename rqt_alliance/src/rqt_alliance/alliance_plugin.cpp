@@ -31,6 +31,7 @@ void AlliancePlugin::initPlugin(qt_gui_cpp::PluginContext& context)
 {
   // access standalone command line arguments
   QStringList argv = context.argv();
+  ROS_INFO_STREAM("to aki no AlliancePlugin!!!");
   // create QWidget
   widget_ = new QWidget();
   // extend the widget with all attributes and children from UI file
