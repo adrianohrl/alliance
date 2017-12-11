@@ -42,6 +42,7 @@ rosrun rqt_alliance rqt_alliance
 To launch the rqt GUI without a perspective, run
 
 ```shell
+rm ~/.config/ros.org/rqt_gui.ini
 rqt --force-discover
 ```
 

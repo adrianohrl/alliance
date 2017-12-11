@@ -1,5 +1,5 @@
-#ifndef _ALLIANCE_SENSOR_INTERFACE_H_
-#define _ALLIANCE_SENSOR_INTERFACE_H_
+#ifndef _ALLIANCE_SENSOR_H_
+#define _ALLIANCE_SENSOR_H_
 
 #include <ros/time.h>
 
@@ -30,4 +30,4 @@ typedef boost::shared_ptr<Sensor> SensorPtr;
 typedef boost::shared_ptr<Sensor const> SensorConstPtr;
 }
 
-#endif // _ALLIANCE_SENSOR_INTERFACE_H_
+#endif // _ALLIANCE_SENSOR_H_

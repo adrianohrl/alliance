@@ -36,6 +36,12 @@ void MotivationPlotConfigGenerator::generate(const alliance::Robot& robot)
     i++;
   }
   std::ofstream generated_file(getFilename(robot.getId()));
+  if (!generated_file.is_open())
+  {
+    ROS_INFO("Creating a new folder at /tmp/alliance");
+    system("mkdir -p /tmp/alliance");
+    generated_file.open(getFilename(robot.getId()));
+  }
   generated_file << std::regex_replace(MULTI_PLOT_TEMPLATE,
                                        std::regex("@plots@"), ss.str());
   generated_file.close();
@@ -48,6 +54,12 @@ void MotivationPlotConfigGenerator::generate(const alliance::Robot& robot,
   config = std::regex_replace(config, std::regex("@robot_id@"), robot.getId());
   config = std::regex_replace(config, std::regex("@task_id@"), task.getId());
   std::ofstream generated_file(getFilename(robot.getId(), task.getId()));
+  if (!generated_file.is_open())
+  {
+    ROS_INFO("Creating a new folder at /tmp/alliance");
+    system("mkdir -p /tmp/alliance");
+    generated_file.open(getFilename(robot.getId(), task.getId()));
+  }
   generated_file << config;
   generated_file.close();
 }
@@ -79,7 +91,7 @@ MotivationPlotConfigGenerator::getFilename(const std::string& robot_id,
   {
     filename = filename.substr(1);
   }
-  filename = std::regex_replace(filename, std::regex("/"), "-");
+  filename = std::regex_replace(filename, std::regex("/"), std::string("-"));
   return std::string(root) + "/" + filename + "-motivations.xml";
 }
 
@@ -93,7 +105,7 @@ MotivationPlotConfigGenerator::getFilename(const std::string& robot_id,
   {
     filename = filename.substr(1);
   }
-  filename = std::regex_replace(filename, std::regex("/"), "-");
+  filename = std::regex_replace(filename, std::regex("/"), std::string("-"));
   return std::string(root) + "/" + filename + "-detailed-motivation.xml";
 }
 }

@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rqt_mrta format="architecture">
+<rqt_mrta>
   <architecture>
     <name>ALLIANCE</name>
     <robots>
       <type>ST</type>
       <busy_robots>
         <topic>
-          <name>/alliance/inter_communication</name>
+          <name>/alliance/inter_robot_communication</name>
           <type>alliance_msgs/InterRobotCommunication</type>
           <field>header/frame_id</field>
           <queue_size>10</queue_size>
           <timeout>2.0</timeout>
-          <horizon>10.0</horizon>
         </topic>
       </busy_robots>
+      <config_id>alliance_params</config_id>
+      <launch_id>alliance</launch_id>
     </robots>
     <tasks>
       <type>SR</type>
@@ -22,12 +23,11 @@
       <type>IA</type>
       <allocated_tasks>
         <topic>
-          <name>/alliance/inter_communication</name>
+          <name>/alliance/inter_robot_communication</name>
           <type>alliance_msgs/InterRobotCommunication</type>
           <field>task_id</field>
           <queue_size>10</queue_size>
           <timeout>0.5</timeout>
-          <horizon>10.0</horizon>
         </topic>
       </allocated_tasks>
     </allocations>
@@ -38,7 +38,6 @@
       <param_0>
         <name>name</name>
         <type>string</type>
-        <default>@robot_id@</default>
         <tool_tip>Enter the robot name.</tool_tip>
       </param_0>
       <param_1>
@@ -137,11 +136,14 @@
                 <tool_tip>Enter the giving up delay of the acquiescence module (in [s]).</tool_tip>
               </param_1>
             </params_1>
-            <param_2>
-              <name>impatience/fast_rate</name>
-              <type>double</type>
-              <tool_tip>Enter the motivation fast rate of the impatience module.</tool_tip>
-            </param_2>
+            <params_2>
+              <name>impatience</name>
+              <param_0>
+              <name>fast_rate</name>
+            <type>double</type>
+            <tool_tip>Enter the motivation fast rate of the impatience module.</tool_tip>
+              </param_0>
+            </params_2>
             <params_3>
               <name>sensory_feedback</name>
               <param_0>
@@ -171,7 +173,80 @@
         </array_1>
       </params_6>
     </config_0>
+    <config_1>
+      <id>tasks_alliance_params</id>
+      <params_0>
+        <name>tasks</name>
+        <param_0>
+          <name>size</name>
+          <type>int</type>
+          <value>@array_size@</value>
+          <tool_tip>Enter the number of tasks in the system.</tool_tip>
+        </param_0>
+        <array_1>
+          <name>task@index@</name>
+          <param_0>
+            <name>id</name>
+            <type>string</type>
+            <tool_tip>Enter the task id.</tool_tip>
+          </param_0>
+          <param_1>
+            <name>name</name>
+            <type>string</type>
+            <tool_tip>Enter the task name.</tool_tip>
+          </param_1>
+          <params_2>
+            <name>layers</name>
+            <param_0>
+              <name>size</name>
+              <type>int</type>
+              <value>@array_size@</value>
+              <tool_tip>Enter the number of layers in the task.</tool_tip>
+            </param_0>
+            <array_1>
+              <name>layer@index@</name>
+              <param_0>
+                <name>plugin_name</name>
+                <type>string</type>
+                <tool_tip>Enter the layer plugin name.</tool_tip>
+              </param_0>
+            </array_1>
+          </params_2>
+        </array_1>
+      </params_0>
+    </config_1>
+    <config_2>
+      <id>layers_alliance_params</id>
+    </config_2>
   </configs>
+  <launches>
+    <launch_0>
+      <id>alliance</id>
+      <includes>
+        <include_0>
+          <file>$(find alliance)/launch/alliance.launch</file>
+          <args>
+            <arg_0>
+              <name>robot_id</name>
+              <value>@robot_id@</value>
+            </arg_0>
+            <arg_1>
+              <name>robot_params</name>
+              <value>$(find @package@)/config/@robot_id@_alliance_params.yaml</value>
+            </arg_1>
+            <arg_2>
+              <name>tasks_params</name>
+              <value>$(find @package@)/config/tasks_alliance_params.yaml</value>
+            </arg_2>
+            <arg_3>
+              <name>layers_params</name>
+              <value>$(find @package@)/config/layers_alliance_params.yaml</value>
+            </arg_3>
+          </args>
+        </include_0>
+      </includes>
+    </launch_0>
+  </launches>
   <widgets>
     <widget_0>
       <plugin_name>rqt_alliance/alliance_plugin</plugin_name>

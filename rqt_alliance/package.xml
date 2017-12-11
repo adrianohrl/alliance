@@ -6,7 +6,7 @@
 
   <maintainer email="adrianohrl@unifei.edu.br">Adriano Henrique Rossette Leite</maintainer>
   <license>Apache 2.0</license>
-  <url type="website">https://github.com/adrianohrl/rqt_alliance/wiki</url>
+  <url type="website">https://github.com/adrianohrl/alliance/wiki</url>
   <author email="adrianohrl@unifei.edu.br">Adriano Henrique Rossette Leite</author>
 
   <buildtool_depend>catkin</buildtool_depend>

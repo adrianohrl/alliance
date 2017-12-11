@@ -6,7 +6,7 @@
 
   <maintainer email="adrianohrl@unifei.edu.br">Adriano Henrique Rossette Leite</maintainer>
   <license>Apache 2.0</license>
-  <url type="website">https://github.com/adrianohrl/alliance</url>
+  <url type="website">https://github.com/adrianohrl/alliance/wiki</url>
   <author email="adrianohrl@unifei.edu.br">Adriano Henrique Rossette Leite</author>
 
   <buildtool_depend>catkin</buildtool_depend>
@@ -18,10 +18,10 @@
   <run_depend>alliance_msgs</run_depend>
   <run_depend>pluginlib</run_depend>
   <run_depend>roscpp</run_depend>
-  <!--<run_depend>rqt_mrta</run_depend>-->
+  <run_depend>rqt_mrta</run_depend>
 
   <export>
-    <!--<rqt_mrta architecture="${prefix}/rqt_mrta.xml" />-->
+    <rqt_mrta architecture="${prefix}/rqt_mrta.xml" />
   </export>
 </package>
 

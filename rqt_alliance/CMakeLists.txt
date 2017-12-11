@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8.3)
 
-add_compile_options(-std=c++11)
+set(CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS}")
 
 project(rqt_alliance)
 
