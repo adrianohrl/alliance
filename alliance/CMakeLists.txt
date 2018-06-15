@@ -176,17 +176,19 @@ target_link_libraries(low_level
   ${catkin_LIBRARIES}
 )
 
-catkin_add_gtest(${PROJECT_NAME}_utest
-  test/utest.cpp
-  ${CPP_FILES}
-)
+if(CATKIN_ENABLE_TESTING)
+  catkin_add_gtest(${PROJECT_NAME}_utest
+    test/utest.cpp
+    ${CPP_FILES}
+  )
 
-add_dependencies(${PROJECT_NAME}_utest
-  ${Boost_EXPORTED_TARGETS}
-  ${catkin_EXPORTED_TARGETS}
-)
+  add_dependencies(${PROJECT_NAME}_utest
+    ${Boost_EXPORTED_TARGETS}
+    ${catkin_EXPORTED_TARGETS}
+  )
 
-target_link_libraries(${PROJECT_NAME}_utest
-  ${Boost_LIBRARIES}
-  ${catkin_LIBRARIES}
-)
+  target_link_libraries(${PROJECT_NAME}_utest
+    ${Boost_LIBRARIES}
+    ${catkin_LIBRARIES}
+  )
+endif()

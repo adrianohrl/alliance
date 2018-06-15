@@ -25,6 +25,7 @@ private:
   static const std::string SINGLE_PLOT_TEMPLATE;
   static const std::string DETAILED_MULTI_PLOT_TEMPLATE;
   static std::string getTemplate(const std::string& filename);
+  static std::string replace(const std::string& str, char pre, char post);
 
 };
 }

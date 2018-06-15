@@ -91,7 +91,7 @@ MotivationPlotConfigGenerator::getFilename(const std::string& robot_id,
   {
     filename = filename.substr(1);
   }
-  filename = std::regex_replace(filename, std::regex("/"), std::string("-"));
+  filename = replace(filename, '/', '-');
   return std::string(root) + "/" + filename + "-motivations.xml";
 }
 
@@ -105,7 +105,20 @@ MotivationPlotConfigGenerator::getFilename(const std::string& robot_id,
   {
     filename = filename.substr(1);
   }
-  filename = std::regex_replace(filename, std::regex("/"), std::string("-"));
+  filename = replace(filename, '/', '-');
   return std::string(root) + "/" + filename + "-detailed-motivation.xml";
+}
+
+std::string MotivationPlotConfigGenerator::replace(const std::string &str, char pre, char post)
+{
+  std::string str_copy(str);
+  for (int i(0); i < str.size(); i++)
+  {
+    if (str[i] == pre)
+    {
+       str_copy[i] = post;
+    }
+  }
+  return str_copy;
 }
 }
